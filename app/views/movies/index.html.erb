@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Movies</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Titulo</th>
+      <th>Ano estreia</th>
+      <th>Duracao</th>
+      <th>Trailer</th>
+      <th>Pais origem</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @movies.each do |movie| %>
+      <tr>
+
+        <td><%= movie.titulo %></td>
+        <td><%= movie.ano_estreia %></td>
+        <td><%= movie.duracao %></td>
+        <td><%= movie.trailer %></td>
+        <td><%= movie.pais_origem %></td>
+        <td><%= link_to 'Show', movie %></td>
+        <% if current_user.movies.find_by_id(movie.id) %>
+        <td>Filme já favoritado</td>
+        <% else %>
+         <td> <%= button_to 'Adicionar Favorito', {:controller => "movies", :action => "favorite_create", :movie => movie}, :method=>:post  %> </td>
+        <% end %>
+        <% if admin_signed_in? %>
+        <td><%= link_to 'Edit', edit_movie_path(movie) %></td>
+        <td><%= link_to 'Destroy', movie, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<% if admin_signed_in? %>
+<%= link_to 'New Movie', new_movie_path %>
+<% end %>

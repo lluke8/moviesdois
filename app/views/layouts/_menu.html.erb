@@ -1,0 +1,27 @@
+<nav class="nav">
+  <a class="nav-link active" href="<%= root_path %>">Inicio</a>
+  <% if admin_signed_in? %>
+  <a class="nav-link" href="<%= users_path %>">Usuários Cadastrados</a>
+  <% end %>
+  <a class="nav-link" href="<%= movies_path %>">Filmes</a>
+ <!-- <a class="nav-link disabled" href="#">Disabled</a> -->
+  <% if user_signed_in? %>
+  Bem vindo(a), <%= current_user.nome %> | <%= link_to "Sair", destroy_user_session_path, method: :delete %>
+<% else %>
+	<% if !admin_signed_in? %>
+<a class="nav-link" href="<%= new_user_session_path %>">Entrar</a>
+<!--<%= link_to "login", new_user_session_path %> -->
+<% end %>
+<% end %>
+<% if admin_signed_in? %>
+  Bem vindo(a), <%= current_admin.email %> | <%= link_to "Sair", destroy_admin_session_path, method: :delete %>
+<% else %>
+<% if !user_signed_in? %>
+<a class="nav-link" href="<%= admin_session_path %>">Admin (login)</a>
+<!--<%= link_to "login", new_user_session_path %> -->
+<% end %>
+<% end %>
+<% if user_signed_in? %>
+	<a class="nav-link" href="<%= users_favorite_path %>">Meus Filmes</a>
+<% end %>
+</nav>

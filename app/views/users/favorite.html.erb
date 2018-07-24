@@ -1,0 +1,36 @@
+<h1> FAVORITES w</h1>
+
+<h3>Aqui está seus filmes favoritos, <%= current_user.nome %></h3>
+
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Titulo</th>
+      <th>Ano estreia</th>
+      <th>Duracao</th>
+      <th>Trailer</th>
+      <th>Pais origem</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @user.movies.each do |movie| %>
+      <tr>
+        <td><%= movie.titulo %></td>
+        <td><%= movie.ano_estreia %></td>
+        <td><%= movie.duracao %></td>
+        <td><%= movie.trailer %></td>
+        <td><%= movie.pais_origem %></td>
+        <td><%= button_to 'Remover', {:controller => "movies", :action => "favorite_destroy", :movie => movie}, :method=>:post  %></td>
+ 		<!--<td><%= button_to "destroy", movies_remove_favorite_path %></td>-->
+       
+       	
+        
+    	
+        <!--<td><%= link_to 'Show', movie %></td> -->
+      </tr>
+    <% end %>
+  </tbody>
+</table>
