@@ -1,36 +1,22 @@
-<h1> FAVORITES w</h1>
+<h1> Filmes Favoritos </h1>
 
 <h3>Aqui está seus filmes favoritos, <%= current_user.nome %></h3>
 
 
-<table class="table">
-  <thead>
-    <tr>
-      <th>Titulo</th>
-      <th>Ano estreia</th>
-      <th>Duracao</th>
-      <th>Trailer</th>
-      <th>Pais origem</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @user.movies.each do |movie| %>
-      <tr>
-        <td><%= movie.titulo %></td>
-        <td><%= movie.ano_estreia %></td>
-        <td><%= movie.duracao %></td>
-        <td><%= movie.trailer %></td>
-        <td><%= movie.pais_origem %></td>
-        <td><%= button_to 'Remover', {:controller => "movies", :action => "favorite_destroy", :movie => movie}, :method=>:post  %></td>
- 		<!--<td><%= button_to "destroy", movies_remove_favorite_path %></td>-->
-       
-       	
-        
-    	
-        <!--<td><%= link_to 'Show', movie %></td> -->
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<div class="card-group col-md-12">
+  <div class="container">
+<% @user.movies.each do |movie| %>
+  <div class="card">
+    <img class="card-img-top"  style="width: 18rem;" src="https://usercontent2.hubstatic.com/8666089.jpg" alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title"> Titulo:  <%= movie.titulo %> </h5>
+      <p class="card-text"><%= movie.titulo %> foi lançado em <%= movie.ano_estreia %> no pais de origem: <%= movie.pais_origem %>.</p>
+      <p class="card-text"> <%= link_to 'Mais Informações', movie, :class => "btn btn-primary" %> </p>
+      
+      <p class="card-text"><small class="text-muted">Ultima atualização <%= movie.updated_at %></small></p>
+      <p><%= button_to 'Remover', {:controller => "movies", :action => "favorite_destroy", :movie => movie}, :class => "btn btn-danger", :method=>:post  %></p>
+    </div>
+  </div>
+<% end %>
+</div>
+</div>

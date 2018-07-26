@@ -1,30 +1,55 @@
 <p id="notice"><%= notice %></p>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Titulo</th>
+      <th>Ano estreia</th>
+      <th>Duracao</th>
+      <th>Trailer</th>
+      <th>Pais origem</th>
+      <th colspan="3"></th>
+    </tr>
+ </thead>
+ <tbody>
+   <tr>
+    <td><%= @movie.titulo %></td> 
+    <td><%= @movie.ano_estreia %></td> 
+    <td><%= @movie.duracao %></td> 
+    <td><%= @movie.trailer %></td> 
+    <td><%= @movie.pais_origem %></td> 
+   </tr>
 
-<p>
-  <strong>Titulo:</strong>
-  <%= @movie.titulo %>
-</p>
+ </tbody>
 
-<p>
-  <strong>Ano estreia:</strong>
-  <%= @movie.ano_estreia %>
-</p>
 
-<p>
-  <strong>Duracao:</strong>
-  <%= @movie.duracao %>
-</p>
 
-<p>
-  <strong>Trailer:</strong>
-  <%= @movie.trailer %>
-</p>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Bibliografia</th>
+      <th>Data Nascimento</th>
+      <th>Site Oficial</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+<p
 
-<p>
-  <strong>Pais origem:</strong>
-  <%= @movie.pais_origem %>
-</p>
+ class="text-center">Elenco <%= @movie.titulo %>
+   
+ </p>
+<tbody>
+<% @movie.actors.each do |actor| %>
+      <tr>
+        <td><%= actor.nome %></td>
+        <td><%= actor.bibliografia %></td>
+        <td><%= actor.datanasc %></td>
+        <td><%= actor.siteoficial %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 <% if admin_signed_in? %>
 <%= link_to 'Edit', edit_movie_path(@movie) %> |
 <% end %>
-<%= link_to 'Back', movies_path %>
+<%= link_to 'Voltar', movies_path, :class => "btn btn-success" %>

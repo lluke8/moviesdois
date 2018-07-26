@@ -1,42 +1,31 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Movies</h1>
+<h1 class="text-center">Filmes!</h1>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th>Titulo</th>
-      <th>Ano estreia</th>
-      <th>Duracao</th>
-      <th>Trailer</th>
-      <th>Pais origem</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
 
-  <tbody>
-    <% @movies.each do |movie| %>
-      <tr>
 
-        <td><%= movie.titulo %></td>
-        <td><%= movie.ano_estreia %></td>
-        <td><%= movie.duracao %></td>
-        <td><%= movie.trailer %></td>
-        <td><%= movie.pais_origem %></td>
-        <td><%= link_to 'Show', movie %></td>
+<div class="card-group col-md-12">
+  <div class="container">
+<% @movies.each do |movie| %>
+  <div class="card">
+    <img class="card-img-top"  style="width: 18rem;" src="https://usercontent2.hubstatic.com/8666089.jpg" alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title"> Titulo:  <%= movie.titulo %> </h5>
+      <p class="card-text"><%= movie.titulo %> foi lançado em <%= movie.ano_estreia %> no pais de origem: <%= movie.pais_origem %>.</p>
+      <p class="card-text"> <%= link_to 'Mais Informações', movie, :class => "btn btn-primary" %> </p>
+      <% if user_signed_in? %>
         <% if current_user.movies.find_by_id(movie.id) %>
-        <td>Filme já favoritado</td>
+        <td><button type="button" class="btn btn-warning">Filme já favoritado!</button></td>
         <% else %>
-         <td> <%= button_to 'Adicionar Favorito', {:controller => "movies", :action => "favorite_create", :movie => movie}, :method=>:post  %> </td>
+         <td> <%= button_to 'Adicionar Favorito', {:controller => "movies", :action => "favorite_create", :movie => movie}, :class => "btn btn-success",  :method=>:post  %> </td>
         <% end %>
-        <% if admin_signed_in? %>
-        <td><%= link_to 'Edit', edit_movie_path(movie) %></td>
-        <td><%= link_to 'Destroy', movie, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <% end %>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+      <p class="card-text"><small class="text-muted">Ultima atualização <%= movie.updated_at %></small></p>
+    </div>
+  </div>
+<% end %>
+</div>
+</div>
 
 <br>
 <% if admin_signed_in? %>

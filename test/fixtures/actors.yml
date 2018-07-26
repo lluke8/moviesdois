@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  nome: MyString
+  bibliografia: MyText
+  datanasc: 2018-07-26 01:08:09
+  siteoficial: MyString
+
+two:
+  nome: MyString
+  bibliografia: MyText
+  datanasc: 2018-07-26 01:08:09
+  siteoficial: MyString

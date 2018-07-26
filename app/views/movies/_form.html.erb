@@ -35,6 +35,14 @@
     <%= form.label :pais_origem %>
     <%= form.text_field :pais_origem, id: :movie_pais_origem %>
   </div>
+  <div id = "actors">
+    <%= form.fields_for :actors do |contacts_fields| %>
+      <%= render partial: "actor_fields", locals: {f: actors_fields} %>
+    <% end %>
+
+    <%= link_to_add_association('[ Adicionar Ator(triz) ]', form, :actors, :class => "btn btn-warning") %>
+  </div>
+  
 
   <div class="actions">
     <%= form.submit %>

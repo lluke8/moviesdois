@@ -10,7 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180723204452) do
+ActiveRecord::Schema.define(version: 20180726011752) do
+
+  create_table "actors", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "nome"
+    t.text "bibliografia"
+    t.datetime "datanasc"
+    t.string "siteoficial"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "actors_movies", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "actor_id"
+    t.bigint "movie_id"
+    t.index ["actor_id"], name: "index_actors_movies_on_actor_id"
+    t.index ["movie_id"], name: "index_actors_movies_on_movie_id"
+  end
 
   create_table "admins", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "email", default: "", null: false
@@ -27,6 +43,15 @@ ActiveRecord::Schema.define(version: 20180723204452) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_admins_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
+  end
+
+  create_table "contacts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "tipo"
+    t.string "valor"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_contacts_on_user_id"
   end
 
   create_table "movies", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -64,4 +89,7 @@ ActiveRecord::Schema.define(version: 20180723204452) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "actors_movies", "actors"
+  add_foreign_key "actors_movies", "movies"
+  add_foreign_key "contacts", "users"
 end

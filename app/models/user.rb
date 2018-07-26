@@ -5,6 +5,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
  has_and_belongs_to_many :movies
-
-  
+ has_many :contacts
+ accepts_nested_attributes_for :contacts, reject_if: :all_blank, allow_destroy: true
 end

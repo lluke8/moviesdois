@@ -30,4 +30,5 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  idioma: "English"
+  intro: "This is a Ruby on Rails project from the Federal Institute of Paraiba-João Pessoa Campus. Student: Lucas"
