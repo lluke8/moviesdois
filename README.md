@@ -1,24 +1,24 @@
 # README
+Nome do Projeto: MCenter
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Descrição: Um sistema onde atualmente o usuário pode se cadastrar e criar uma lista de filmes favoritos baseado nos filmes disponíveis no sistema(Favoritar filmes), além de claro pesquisar e obter informações sobre filmes, trailers, atores, etc.
 
-Things you may want to cover:
+Desenvolvido com Ruby on Rails (Versão ruby 2.5.0p0 (2017-12-25 revision 61468) [x86_64-linux])
 
-* Ruby version
+Seeding pré configurado:
 
-* System dependencies
+*Executar db:seed
 
-* Configuration
+Ambiente recomendado para rodar:
 
-* Database creation
+*Vagrant com box ubuntu 16.04
+*MySQL instalado na box
+*Ruby
+*Rails~
+*NodeJS
+*Bundle
+*RVM
+*Lynx
+*Git
 
-* Database initialization
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
