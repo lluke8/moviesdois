@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :trailers
+  resources :directors
+  resources :actors
   post '/movies/create_favorite' => 'movies#favorite_create' 
   post '/movies/remove_favorite' => 'movies#favorite_destroy'	
   #delete '/users/remove_favorite' => 'users#favorite_destroy'

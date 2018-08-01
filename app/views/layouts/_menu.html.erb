@@ -1,39 +1,58 @@
-<div class="jumbotron jumbotron-fluid" style="background-image: url(https://wallpaper-house.com/data/out/12/wallpaper2you_524482.jpg); background-size: cover;">
-  <div class="container">
-<nav class="nav">
-  <a class="nav-link active btn btn-success" href="<%= root_path %>">Inicio</a>
-  <% if admin_signed_in? %>
-  <a class="nav-link  btn btn-secondary" href="<%= users_path %>">Usuários Cadastrados</a>
-  <% end %>
-  <a class="nav-link btn btn-primary " href="<%= movies_path %>">Filmes</a>
- <!-- <a class="nav-link disabled" href="#">Disabled</a> -->
-  <% if user_signed_in? %>
-   Bem vindo(a), <%= current_user.nome %> | <%= link_to "Sair", destroy_user_session_path, :class => "btn btn-info",method: :delete %>
-<% else %>
-	<% if !admin_signed_in? %>
-<a class="nav-link btn btn-primary" href="<%= new_user_session_path %>">Entrar</a>
+<nav class="navbar navbar-expand-md navbar-dark  bg-dark">
+      <a class="navbar-brand" href="<%= root_path %>">Inicio</a>
+      
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav mr-auto">
+          
+          <li class="nav-item ">
+            <a class="nav-link" href="<%= movies_path %>">Filmes<span class="sr-only">(current)</span></a>
+          </li>
+
+          <li class="nav-item ">
+            <a class="nav-link" href="<%= trailers_path %>">Trailers<span class="sr-only">(current)</span></a>
+          </li>
+
+          <li class="nav-item ">
+            <a class="nav-link" href="<%= actors_path %>">Atores<span class="sr-only">(current)</span></a>
+          </li>
+          
+          <li class="nav-item">
+            <% if user_signed_in? %>
+               Bem vindo(a), <%= current_user.nome %> | <%= link_to "Sair", destroy_user_session_path, method: :delete %>
+            <% else %>
+              <% if !admin_signed_in? %>
+            <a class="nav-link" href="<%= new_user_session_path %>">Login</a>
+            <!--<%= link_to "login", new_user_session_path %> -->
+            <% end %>
+            <% end %>
+          <li class="nav-item">
+            <% if admin_signed_in? %>
+            Bem vindo(a), <%= current_admin.email %> | <%= link_to "Sair", destroy_admin_session_path, method: :delete %>
+            <% else %>
+          <% if !user_signed_in? %>
+            <a class="nav-link" href="<%= admin_session_path %>">Admin Login</a>
 <!--<%= link_to "login", new_user_session_path %> -->
-<% end %>
-<% end %>
-<% if admin_signed_in? %>
-  Bem vindo(a), <%= current_admin.email %> | <%= link_to "Sair", destroy_admin_session_path, :class => "btn btn-info",method: :delete %>
-<% else %>
-<% if !user_signed_in? %>
-<a class="nav-link btn btn-dark" href="<%= admin_session_path %>">Admin (login)</a>
-<!--<%= link_to "login", new_user_session_path %> -->
-<% end %>
-<% end %>
-<% if admin_signed_in? %>
-  <a class="nav-link active btn btn-secondary" href="<%= new_movie_path %>">Cadastrar Filme</a>
-<% end %>
-<% if !user_signed_in? %>
-<% if !admin_signed_in? %>
-<a class="nav-link btn btn-primary" href="<%= new_user_registration_path %>">Cadastrar</a>
-<% end %>
-<% end %>
-<% if user_signed_in? %>
-	<a class="nav-link active btn btn-info" href="<%= users_favorite_path %>">Meus Filmes</a>
-<% end %>
-</nav>
-</div>
-</div>
+          <% end %>
+          <% end %>
+          <% if admin_signed_in? %>
+            <a class="nav-link active btn btn-secondary" href="<%= new_movie_path %>">Cadastrar Filme</a>
+          <% end %>
+          <% if !user_signed_in? %>
+          <% if !admin_signed_in? %>
+          <li class="nav-item">
+            <a class="nav-link" href="<%= new_user_registration_path %>">Cadastrar</a>
+          <% end %>
+          <% end %>
+          <% if user_signed_in? %>
+            <a class="nav-link active btn btn-info" href="<%= users_favorite_path %>">Meus Filmes</a>
+          <% end %>
+          </li>
+          </li>  
+          </li>
+        </ul>
+        
+      </div>
+    </nav>

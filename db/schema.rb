@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180726011752) do
+ActiveRecord::Schema.define(version: 20180801031131) do
 
   create_table "actors", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "nome"
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20180726011752) do
     t.string "siteoficial"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "image_url"
   end
 
   create_table "actors_movies", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -54,6 +55,17 @@ ActiveRecord::Schema.define(version: 20180726011752) do
     t.index ["user_id"], name: "index_contacts_on_user_id"
   end
 
+  create_table "directors", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "name"
+    t.datetime "birthDate"
+    t.string "award"
+    t.string "gender"
+    t.string "nationality"
+    t.string "movie"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "movies", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "titulo"
     t.datetime "ano_estreia"
@@ -62,6 +74,7 @@ ActiveRecord::Schema.define(version: 20180726011752) do
     t.string "pais_origem"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "image_url"
   end
 
   create_table "movies_users", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -69,6 +82,18 @@ ActiveRecord::Schema.define(version: 20180726011752) do
     t.bigint "user_id", null: false
     t.index ["movie_id"], name: "index_movies_users_on_movie_id"
     t.index ["user_id"], name: "index_movies_users_on_user_id"
+  end
+
+  create_table "trailers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "duration"
+    t.string "embedUrl"
+    t.datetime "uploadDate"
+    t.string "about"
+    t.string "movie"
+    t.string "review"
+    t.string "publisher"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

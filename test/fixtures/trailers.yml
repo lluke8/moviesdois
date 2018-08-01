@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  duration: MyString
+  embedUrl: MyString
+  uploadDate: 2018-08-01 03:11:31
+  about: MyString
+  movie: MyString
+  review: MyString
+  publisher: MyString
+
+two:
+  duration: MyString
+  embedUrl: MyString
+  uploadDate: 2018-08-01 03:11:31
+  about: MyString
+  movie: MyString
+  review: MyString
+  publisher: MyString

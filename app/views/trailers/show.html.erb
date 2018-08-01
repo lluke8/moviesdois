@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Duration:</strong>
+  <%= @trailer.duration %>
+</p>
+
+<p>
+  <strong>Embedurl:</strong>
+  <%= @trailer.embedUrl %>
+</p>
+
+<p>
+  <strong>Uploaddate:</strong>
+  <%= @trailer.uploadDate %>
+</p>
+
+<p>
+  <strong>About:</strong>
+  <%= @trailer.about %>
+</p>
+
+<p>
+  <strong>Movie:</strong>
+  <%= @trailer.movie %>
+</p>
+
+<p>
+  <strong>Review:</strong>
+  <%= @trailer.review %>
+</p>
+
+<p>
+  <strong>Publisher:</strong>
+  <%= @trailer.publisher %>
+</p>
+
+<%= link_to 'Edit', edit_trailer_path(@trailer) %> |
+<%= link_to 'Back', trailers_path %>

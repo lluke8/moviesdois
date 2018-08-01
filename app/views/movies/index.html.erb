@@ -1,18 +1,18 @@
 <p id="notice"><%= notice %></p>
 
-<h1 class="text-center">Filmes!</h1>
-
-
-
+<h1 class="text-center">Filmes</h1>
 <div class="card-group col-md-12">
   <div class="container">
 <% @movies.each do |movie| %>
   <div class="card">
-    <img class="card-img-top"  style="width: 18rem;" src="https://usercontent2.hubstatic.com/8666089.jpg" alt="Card image cap">
-    <div class="card-body">
-      <h5 class="card-title"> Titulo:  <%= movie.titulo %> </h5>
+    
+    <div class="card-body" vocab="http://schema.org/" typeof="Movie">
+      <h5 class="card-title" property="name" > Titulo:  <%= movie.titulo %> </h5>
+      <%= image_tag(movie.image_url, size: "599x299") %>
       <p class="card-text"><%= movie.titulo %> foi lançado em <%= movie.ano_estreia %> no pais de origem: <%= movie.pais_origem %>.</p>
+      
       <p class="card-text"> <%= link_to 'Mais Informações', movie, :class => "btn btn-primary" %> </p>
+
       <% if user_signed_in? %>
         <% if current_user.movies.find_by_id(movie.id) %>
         <td><button type="button" class="btn btn-warning">Filme já favoritado!</button></td>
@@ -20,7 +20,7 @@
          <td> <%= button_to 'Adicionar Favorito', {:controller => "movies", :action => "favorite_create", :movie => movie}, :class => "btn btn-success",  :method=>:post  %> </td>
         <% end %>
         <% end %>
-      <p class="card-text"><small class="text-muted">Ultima atualização <%= movie.updated_at %></small></p>
+      <p class="card-text"><small class="text-muted" property="dateModified">Ultima atualização <%= movie.updated_at %></small></p>
     </div>
   </div>
 <% end %>
@@ -29,5 +29,6 @@
 
 <br>
 <% if admin_signed_in? %>
+
 <%= link_to 'New Movie', new_movie_path %>
 <% end %>

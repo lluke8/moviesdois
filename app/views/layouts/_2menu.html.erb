@@ -1,0 +1,39 @@
+<div class="jumbotron jumbotron-fluid" style="background-image: url(https://image.ibb.co/coH6M8/pipoca.jpg); background-size: cover;">
+  <div class="container">
+<nav class="nav">
+  <a class="" href="<%= root_path %>">Inicio</a>
+  <% if admin_signed_in? %>
+  <a class="nav-link  btn btn-secondary" href="<%= users_path %>">Usuários Cadastrados</a>
+  <% end %>
+  <a class="nav-link btn btn-primary " href="<%= movies_path %>">Filmes</a>
+ <!-- <a class="nav-link disabled" href="#">Disabled</a> -->
+  <% if user_signed_in? %>
+   Bem vindo(a), <%= current_user.nome %> | <%= link_to "Sair", destroy_user_session_path, :class => "btn btn-info",method: :delete %>
+<% else %>
+	<% if !admin_signed_in? %>
+<a class="nav-link btn btn-primary" href="<%= new_user_session_path %>">Entrar</a>
+<!--<%= link_to "login", new_user_session_path %> -->
+<% end %>
+<% end %>
+<% if admin_signed_in? %>
+  Bem vindo(a), <%= current_admin.email %> | <%= link_to "Sair", destroy_admin_session_path, :class => "btn btn-info",method: :delete %>
+<% else %>
+<% if !user_signed_in? %>
+<a class="nav-link btn btn-dark" href="<%= admin_session_path %>">Admin (login)</a>
+<!--<%= link_to "login", new_user_session_path %> -->
+<% end %>
+<% end %>
+<% if admin_signed_in? %>
+  <a class="nav-link active btn btn-secondary" href="<%= new_movie_path %>">Cadastrar Filme</a>
+<% end %>
+<% if !user_signed_in? %>
+<% if !admin_signed_in? %>
+<a class="nav-link btn btn-primary" href="<%= new_user_registration_path %>">Cadastrar</a>
+<% end %>
+<% end %>
+<% if user_signed_in? %>
+	<a class="nav-link active btn btn-info" href="<%= users_favorite_path %>">Meus Filmes</a>
+<% end %>
+</nav>
+</div>
+</div>

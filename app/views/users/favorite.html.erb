@@ -8,9 +8,10 @@
   <div class="container">
 <% @user.movies.each do |movie| %>
   <div class="card">
-    <img class="card-img-top"  style="width: 18rem;" src="https://usercontent2.hubstatic.com/8666089.jpg" alt="Card image cap">
+    
     <div class="card-body">
       <h5 class="card-title"> Titulo:  <%= movie.titulo %> </h5>
+      <%= image_tag(movie.image_url, size: "599x299") %>
       <p class="card-text"><%= movie.titulo %> foi lançado em <%= movie.ano_estreia %> no pais de origem: <%= movie.pais_origem %>.</p>
       <p class="card-text"> <%= link_to 'Mais Informações', movie, :class => "btn btn-primary" %> </p>
       

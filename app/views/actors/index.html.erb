@@ -1,0 +1,41 @@
+<div class="container">
+<h1 align="center">Atores</h1>
+
+
+
+
+<table class="table" >
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Bibliografia</th>
+      <th>Data Nascimento</th>
+      <th>Site Oficial</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+<!--<%= image_tag("http://www.afronte.com.br/wp-content/uploads/2014/12/img-esquadrao-suicida-elenco-01.jpg", size: "699x99", align: "center") %>  --> 
+ 
+<tbody>
+<% @actors.each do |actor| %>
+	<div class="card" style="width: 18rem;">
+  		
+  	<div class="card-body" vocab="http://schema.org/" typeof="Person">
+  		<strong>Nome</strong>
+	    <h5 class="card-title" property="name"><%= actor.nome %></h5>
+	    <%= image_tag(actor.image_url , size: "239x199", align: "center") %>
+	    <strong>Bibliografia</strong>
+	    <p class="card-text" property="description"><%= actor.bibliografia %></p>
+	    <strong>Data Nascimento</strong>
+	    <p class="card-text" property="birthDate"><%= actor.datanasc %></p>
+	    <strong>Site Oficial</strong>
+	    <p class="card-text" property="url"><%= actor.siteoficial %></p>
+	    
+  </div>
+</div>    
+<% end %>
+	
+</tbody>
+</table>
+<%= paginate(@actors) %>
+</div>

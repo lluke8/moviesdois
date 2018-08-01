@@ -35,6 +35,11 @@
     <%= form.label :pais_origem %>
     <%= form.text_field :pais_origem, id: :movie_pais_origem %>
   </div>
+
+  <div class="field">
+    <%= form.label :image_url %>
+    <%= form.text_field :image_url, id: :movie_image_url %>
+  </div>
   <div id = "actors">
     <%= form.fields_for :actors do |contacts_fields| %>
       <%= render partial: "actor_fields", locals: {f: actors_fields} %>

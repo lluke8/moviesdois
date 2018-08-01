@@ -1,10 +1,13 @@
 <p id="notice"><%= notice %></p>
-<table class="table">
+<div class="container">
+<%= image_tag(@movie.image_url, size: "599x299") %>
+
+<table class="table" vocab="http://schema.org/" typeof="Movie">
   <thead>
     <tr>
       <th>Titulo</th>
       <th>Ano estreia</th>
-      <th>Duracao</th>
+      <th>Duracao(min)</th>
       <th>Trailer</th>
       <th>Pais origem</th>
       <th colspan="3"></th>
@@ -12,18 +15,18 @@
  </thead>
  <tbody>
    <tr>
-    <td><%= @movie.titulo %></td> 
-    <td><%= @movie.ano_estreia %></td> 
-    <td><%= @movie.duracao %></td> 
-    <td><%= @movie.trailer %></td> 
-    <td><%= @movie.pais_origem %></td> 
+    <td><p property="name"><%= @movie.titulo %></p></td> 
+    <td><p property="datePublished"><%= @movie.ano_estreia %></p></td>  
+    <td><p property="duration"><%= @movie.duracao %></p></td> 
+    <td><p property="trailer"><%= @movie.trailer %></p></td> 
+    <td><p property="countryOfOrigin"><%= @movie.pais_origem %></p></td> 
    </tr>
 
  </tbody>
 
 
 
-<table class="table">
+<table class="table" vocab="http://schema.org/" typeof="Person">
   <thead>
     <tr>
       <th>Nome</th>
@@ -33,18 +36,19 @@
       <th colspan="3"></th>
     </tr>
   </thead>
-<p
 
- class="text-center">Elenco <%= @movie.titulo %>
-   
- </p>
+
+ 
+<h1 class="text-center" property="name">Elenco: <%= @movie.titulo  %></h1>
+<%= image_tag("http://www.afronte.com.br/wp-content/uploads/2014/12/img-esquadrao-suicida-elenco-01.jpg", size: "799x99") %>   
+ 
 <tbody>
 <% @movie.actors.each do |actor| %>
       <tr>
-        <td><%= actor.nome %></td>
-        <td><%= actor.bibliografia %></td>
-        <td><%= actor.datanasc %></td>
-        <td><%= actor.siteoficial %></td>
+        <td><p property="name"><%= actor.nome %></p></td>
+        <td><p property="description"><%= actor.bibliografia %></p></td>
+        <td><p property="birthDate"><%= actor.datanasc %></p></td>
+        <td><p property="url"><%= actor.siteoficial %></p></td>
       </tr>
     <% end %>
   </tbody>
@@ -53,3 +57,4 @@
 <%= link_to 'Edit', edit_movie_path(@movie) %> |
 <% end %>
 <%= link_to 'Voltar', movies_path, :class => "btn btn-success" %>
+</div>
